@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "author": "Swift-Safety",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 100,
+      "left": -100,
+      "rotate": 90,
+      "attrs": {}
+    },
+    { "type": "wokwi-dht22", "id": "dht", "top": -50, "left": -140, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "chuva", "top": -60, "left": 50, "attrs": {} },
+    { "type": "wokwi-lcd1602", "id": "lcd", "top": 64, "left": 207.2, "attrs": { "pins": "i2c" } },
+    {
+      "type": "wokwi-led",
+      "id": "led_vermelho",
+      "top": 207.6,
+      "left": 71,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_amarelo",
+      "top": 207.6,
+      "left": 138.2,
+      "attrs": { "color": "yellow" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "res1",
+      "top": 235.2,
+      "left": 85.85,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "res2",
+      "top": 235.2,
+      "left": 162.65,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    },
+    { "type": "wokwi-buzzer", "id": "buzzer", "top": 280, "left": 40, "attrs": {} },
+    {
+      "type": "wokwi-ultrasonic-sensor",
+      "id": "nivel_agua",
+      "top": -60,
+      "left": 200,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr",
+      "top": -54.4,
+      "left": 183.2,
+      "attrs": {}
+    },
+    { "type": "wokwi-mq2", "id": "mq2", "top": -50, "left": 400, "attrs": {} },
+    { "type": "wokwi-bmp280", "id": "bmp", "top": -50, "left": 520, "attrs": {} },
+    { "type": "wokwi-mpu6050", "id": "mpu6050", "top": -53.78, "left": 415.12, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht:VCC", "esp:5V", "red", [] ],
+    [ "dht:GND", "esp:GND.1", "black", [] ],
+    [ "dht:SDA", "esp:12", "green", [] ],
+    [ "chuva:VCC", "esp:3V3", "red", [] ],
+    [ "chuva:GND", "esp:GND.2", "black", [] ],
+    [ "chuva:SIG", "esp:34", "blue", [] ],
+    [ "lcd:GND", "esp:GND.3", "black", [] ],
+    [ "lcd:VCC", "esp:3V3", "red", [] ],
+    [ "lcd:SDA", "esp:21", "green", [] ],
+    [ "lcd:SCL", "esp:22", "yellow", [] ],
+    [ "led_vermelho:C", "res1:1", "black", [] ],
+    [ "res1:2", "esp:GND.4", "black", [] ],
+    [ "esp:13", "led_vermelho:A", "red", [] ],
+    [ "led_amarelo:C", "res2:1", "black", [] ],
+    [ "res2:2", "esp:GND.5", "black", [] ],
+    [ "esp:14", "led_amarelo:A", "yellow", [] ],
+    [ "buzzer:1", "esp:15", "blue", [] ],
+    [ "buzzer:2", "esp:GND", "black", [] ],
+    [ "nivel_agua:VCC", "esp:5V", "red", [] ],
+    [ "nivel_agua:GND", "esp:GND", "black", [] ],
+    [ "nivel_agua:TRIG", "esp:18", "green", [] ],
+    [ "nivel_agua:ECHO", "esp:19", "blue", [] ],
+    [ "ldr:VCC", "esp:3V3", "red", [] ],
+    [ "ldr:GND", "esp:GND", "black", [] ],
+    [ "ldr:AO", "esp:35", "magenta", [] ],
+    [ "mq2:VCC", "esp:5V", "red", [] ],
+    [ "mq2:GND", "esp:GND", "black", [] ],
+    [ "mq2:AO", "esp:32", "orange", [] ],
+    [ "bmp:VCC", "esp:3V3", "red", [] ],
+    [ "bmp:GND", "esp:GND", "black", [] ],
+    [ "bmp:SCL", "esp:22", "yellow", [] ],
+    [ "bmp:SDA", "esp:21", "green", [] ],
+    [ "mpu6050:VCC", "esp:3V3", "red", [] ],
+    [ "mpu6050:GND", "esp:GND", "black", [] ],
+    [ "mpu6050:SCL", "esp:22", "yellow", [] ],
+    [ "mpu6050:SDA", "esp:21", "green", [] ]
+  ],
+  "dependencies": {}
+}
