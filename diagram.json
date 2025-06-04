@@ -1,0 +1,134 @@
+{
+  "version": 1,
+  "author": "Swift-Safety",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 103.94,
+      "left": -101.9,
+      "rotate": 90,
+      "attrs": {}
+    },
+    { "type": "wokwi-dht22", "id": "dht", "top": -50, "left": -140, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "chuva", "top": -126.1, "left": 47.8, "attrs": {} },
+    { "type": "wokwi-lcd1602", "id": "lcd", "top": 64, "left": 207.2, "attrs": { "pins": "i2c" } },
+    {
+      "type": "wokwi-led",
+      "id": "led_vermelho",
+      "top": 169.2,
+      "left": 90.2,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_amarelo",
+      "top": 169.2,
+      "left": 147.8,
+      "attrs": { "color": "yellow" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "res1",
+      "top": 244.8,
+      "left": 76.25,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "res2",
+      "top": 244.8,
+      "left": 133.85,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    },
+    { "type": "wokwi-buzzer", "id": "buzzer", "top": 271.2, "left": -17.4, "attrs": {} },
+    {
+      "type": "wokwi-ultrasonic-sensor",
+      "id": "nivel_agua",
+      "top": -60,
+      "left": 200,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr",
+      "top": -54.6,
+      "left": 142,
+      "rotate": 180,
+      "attrs": {}
+    },
+    { "type": "wokwi-mq2", "id": "mq2", "top": -50, "left": 400, "attrs": {} },
+    { "type": "wokwi-bmp280", "id": "bmp", "top": -50, "left": 520, "attrs": {} },
+    {
+      "type": "wokwi-mpu6050",
+      "id": "mpu6050",
+      "top": -132.02,
+      "left": -55.52,
+      "rotate": 180,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text2",
+      "top": -86.4,
+      "left": 172.8,
+      "attrs": { "text": "sensor de gás" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text3",
+      "top": -163.2,
+      "left": 28.8,
+      "attrs": { "text": "sensor de chuva" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht:VCC", "esp:5V", "red", [] ],
+    [ "dht:GND", "esp:GND.1", "black", [] ],
+    [ "dht:SDA", "esp:12", "green", [ "v40.7", "h29.1" ] ],
+    [ "chuva:VCC", "esp:3V3", "red", [ "v28.8", "h-68" ] ],
+    [ "chuva:GND", "esp:GND.2", "black", [ "v249.6", "h-48" ] ],
+    [ "chuva:SIG", "esp:34", "blue", [ "v105.6", "h-96.4" ] ],
+    [ "lcd:GND", "esp:GND.3", "black", [] ],
+    [ "lcd:VCC", "esp:3V3", "red", [] ],
+    [ "lcd:SDA", "esp:21", "green", [ "h-153.6", "v144.2" ] ],
+    [ "lcd:SCL", "esp:22", "yellow", [] ],
+    [ "led_vermelho:C", "res1:1", "black", [] ],
+    [ "res1:2", "esp:GND.4", "black", [] ],
+    [ "esp:13", "led_vermelho:A", "red", [ "v-15.11", "h247.7", "v67.2" ] ],
+    [ "led_amarelo:C", "res2:1", "black", [ "h0.4", "v67.2" ] ],
+    [ "res2:2", "esp:GND.5", "black", [] ],
+    [ "esp:14", "led_amarelo:A", "yellow", [ "h-1.9", "v-24.71", "h278.4", "v96" ] ],
+    [ "buzzer:2", "esp:GND", "black", [] ],
+    [ "nivel_agua:VCC", "esp:5V", "red", [] ],
+    [ "nivel_agua:GND", "esp:GND", "black", [] ],
+    [ "nivel_agua:TRIG", "esp:18", "green", [] ],
+    [ "nivel_agua:ECHO", "esp:19", "blue", [] ],
+    [ "ldr:VCC", "esp:3V3", "red", [] ],
+    [ "ldr:GND", "esp:GND", "black", [] ],
+    [ "ldr:AO", "esp:35", "magenta", [ "h-163.2", "v202.15" ] ],
+    [ "mq2:VCC", "esp:5V", "red", [] ],
+    [ "mq2:GND", "esp:GND", "black", [] ],
+    [ "mq2:AO", "esp:32", "orange", [] ],
+    [ "bmp:VCC", "esp:3V3", "red", [] ],
+    [ "bmp:GND", "esp:GND", "black", [] ],
+    [ "bmp:SCL", "esp:22", "yellow", [] ],
+    [ "bmp:SDA", "esp:21", "green", [] ],
+    [ "mpu6050:VCC", "esp:3V3", "red", [ "v76.8", "h76.72" ] ],
+    [ "mpu6050:GND", "esp:GND", "black", [] ],
+    [ "mpu6050:SCL", "esp:22", "yellow", [ "v96", "h28.72" ] ],
+    [ "mpu6050:SDA", "esp:21", "green", [ "v28.8", "h76.72", "v316.8", "h-76.8" ] ],
+    [ "buzzer:2", "esp:15", "green", [ "v19.2", "h-0.4" ] ],
+    [ "esp:GND.2", "res1:2", "black", [ "v0" ] ],
+    [ "res2:2", "res1:2", "black", [ "h0" ] ],
+    [ "buzzer:1", "res1:2", "black", [ "v28.8", "h38.4" ] ],
+    [ "ldr:GND", "chuva:GND", "black", [ "h0" ] ],
+    [ "mpu6050:GND", "ldr:GND", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
